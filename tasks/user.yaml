@@ -1,0 +1,11 @@
+---
+- name: Mailman user
+  user: name=mailman state=present
+- name: Ensure github.com is a known host
+  lineinfile:
+    dest: /home/mailman/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+  become_user: mailman

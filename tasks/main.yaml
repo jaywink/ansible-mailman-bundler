@@ -1,0 +1,8 @@
+---
+- include: user.yaml
+- include: dependencies.yaml
+- include: python.yaml
+- include: postgresql.yaml
+- include: bundler.yaml
+- include: uwsgi.yaml
+- include: apache.yaml

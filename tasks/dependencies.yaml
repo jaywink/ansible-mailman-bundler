@@ -1,0 +1,11 @@
+---
+- name: Install dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - python3-pip
+    - python-dev
+    - python3-dev
+    - ruby-sass
+    - apache2
+    - git
+    - build-essential

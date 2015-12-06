@@ -1,0 +1,10 @@
+---
+- name: uWSGI ini file
+  template: src=mailman-web-uwsgi.ini dest=/home/mailman/mailman-web-uwsgi.ini
+  become_user: mailman
+  notify:
+    - restart mailmanweb
+- name: uWSGI upstart config
+  template: src=mailman-web-upstart.conf dest=/etc/init/mailmanweb.conf
+  notify:
+    - restart mailmanweb

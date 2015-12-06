@@ -1,0 +1,26 @@
+---
+## Stouts.postfix
+postfix_relayhost: "[smtp.example.com]:587"
+postfix_smtp_sasl_user: "username"
+postfix_smtp_sasl_password: "password"
+
+# Send a test mail to this address when Postfix configuration changes
+postfix_send_test_mail_to: "email@example.com"
+postfix_hostname: "example.com"
+postfix_rewrite_sender_address: "info@example.com"
+
+
+## Mailman
+mailman_web_secret_key: "set me please"
+mailman_db_web_name: "mailmanweb"
+mailman_db_web_user: "mailmanweb"
+mailman_db_web_password: "password"
+mailman_db_web_host: "127.0.0.1"
+mailman_admin_name: "Example Admin"
+mailman_admin_email: "admin@example.com"
+mailman_host: "example.com"
+mailman_confirmation_from_email: "listmaster@example.com"
+mailman_timezone: "Europe/Helsinki"
+mailman_var_path: "/home/mailman/mailman-bundler/mailman_web/var"
+mailman_app_name: "A very cool mailing list"
+mailman_web_root: "{{ mailman_var_path }}/mailman-web/static"

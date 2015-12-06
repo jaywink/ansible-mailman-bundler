@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+import os
+
+
+SECRET_KEY = '{{ mailman_web_secret_key }}'
+
+ADMINS = (
+     ('{{ mailman_admin_name }}', '{{ mailman_admin_email }}'),
+)
+
+ALLOWED_HOSTS = ["{{ mailman_host }}"]
+
+BROWSERID_AUDIENCES = [ "http://{{ mailman_host }}", "http://{{ mailman_host }}:8000" ]
+
+EMAIL_CONFIRMATION_FROM = '{{ mailman_confirmation_from_email }}'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Last part is one of 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '{{ mailman_db_web_name }}',  # Example, change as needed
+        'USER': '{{ mailman_db_web_user }}',  # Example, change as needed
+        'PASSWORD': '{{ mailman_db_web_password }}',  # Example, obviously
+        'HOST': '{{ mailman_db_web_host }}',   # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',            # Set to empty string for default.
+    }
+}
+
+TIME_ZONE = '{{ mailman_timezone }}'
+
+VAR_DIR = "{{ mailman_var_path }}"
+STATIC_ROOT = os.path.join(VAR_DIR, "mailman-web", "static")
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(VAR_DIR, "mailman-web", "fulltext_index"),
+    },
+}
+
+COMPRESS_PRECOMPILERS = (
+   ('text/less', 'lessc {infile} {outfile}'),
+   ('text/x-scss', 'sass {infile} {outfile}'),
+   ('text/x-sass', 'sass {infile} {outfile}'),
+)
+
+APP_NAME = '{{ mailman_app_name }}'
+
+USE_SSL = False
