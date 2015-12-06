@@ -1,3 +1,5 @@
+[![Galaxy](http://img.shields.io/badge/galaxy-jaywink.mailman-bundler-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/6385)
+
 ## Mailman-Bundler role for Ansible
 
 About [Mailman-Bundler](http://mailman-bundler.readthedocs.org/en/latest/).
