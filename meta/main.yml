@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: Jason Robinson
+  description: Mailman-Bundler role for Ansible.
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - 14.04
+  galaxy_tags:
+    - mailman
