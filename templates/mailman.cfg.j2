@@ -1,0 +1,27 @@
+[mailman]
+# This address is the "site owner" address.  Certain messages which must be
+# delivered to a human, but which can't be delivered to a list owner (e.g. a
+# bounce from a list owner), will be sent to this address.  It should point to
+# a human.
+site_owner: {{ mailman_admin_email }}
+layout: here
+
+[paths.here]
+# Everything in the same directory
+var_dir: {{ mailman_bundler_path }}/var
+
+[database]
+class: mailman.database.postgresql.PostgreSQLDatabase
+url: postgres://{{ mailman_db_user }}:{{ mailman_db_password }}@{{ mailman_db_host }}/{{ mailman_db_name }}
+
+[archiver.hyperkitty]
+class: mailman_hyperkitty.Archiver
+enable: yes
+configuration: {{ mailman_bundler_path }}/deployment/mailman-hyperkitty.cfg
+
+[archiver.prototype]
+enable: yes
+
+[webservice]
+admin_pass: {{ mailman_rest_password }}
+admin_user: restadmin

@@ -1,0 +1,14 @@
+---
+- name: Create local settings
+  template: dest="{{ mailman_bundler_path }}/mailman_web/settings_local.py" src=settings_local.py.j2
+  become_user: mailman
+  notify:
+    - restart mailmanweb
+- name: Create static path
+  file: path={{ mailman_var_path }}/mailman-web/static owner=mailman group=mailman state=directory
+  become_user: mailman
+- name: Create search index path
+  file: path={{ mailman_var_path }}/mailman-web/fulltext_index owner=mailman group=mailman state=directory
+  become_user: mailman
+- name: Create logging path
+  file: path=/var/log/mailman-web owner=mailman group=www-data state=directory mode=0770

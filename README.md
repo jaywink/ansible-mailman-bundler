@@ -15,13 +15,7 @@ Both are launched via upstart scripts (`mailman` and `mailmanweb`).
 
 ### Status
 
-This role is not production ready yet. Some TODO's:
-
-* Currently HTTP only is served. HTTPS via LetsEncrypt coming up.
-* Mailman3 should use the PostgreSQL database.
-* Mailman-web uWSGI config is crazy
-* Mailman3 upstart config needs work
-* Mailman3 configuration cannot be done yet
+This role is not production ready yet. See issues.
 
 ### Requirements
 

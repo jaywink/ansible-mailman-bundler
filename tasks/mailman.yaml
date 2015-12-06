@@ -1,0 +1,5 @@
+---
+- name: mailman upstart config
+  template: src=mailman-upstart.conf dest=/etc/init/mailman.conf
+  notify:
+    - restart mailman

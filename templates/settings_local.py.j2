@@ -45,3 +45,6 @@ COMPRESS_PRECOMPILERS = (
 APP_NAME = '{{ mailman_app_name }}'
 
 USE_SSL = False
+
+USE_INTERNAL_AUTH = {{ mailman_web_allow_internal_auth }}
+MAILMAN_REST_API_PASS = '{{ mailman_rest_password }}'

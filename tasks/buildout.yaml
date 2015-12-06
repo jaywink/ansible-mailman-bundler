@@ -1,0 +1,12 @@
+---
+- name: Set buildout target
+  replace:
+    dest: "{{ mailman_bundler_path }}/buildout.cfg"
+    regexp: "deployment = development"
+    replace: "deployment = production"
+- name: Run buildout
+  shell: chdir={{ mailman_bundler_path }} executable=/bin/bash source /home/mailman/venv/bin/activate && buildout
+  become_user: mailman
+  notify:
+    - restart mailmanweb
+    - restart mailman

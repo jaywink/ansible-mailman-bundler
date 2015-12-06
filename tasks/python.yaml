@@ -3,16 +3,8 @@
   apt: name={{ item }}
   with_items:
     - python-virtualenv
-    - python3-setuptools
-- name: Create virtualenv
-  # We do this here since Ansible only has virtualenv_python in 2.x
-  command: creates=/home/mailman/venv virtualenv -p python3.4 /home/mailman/venv3
-  become_user: mailman
 - name: Update pip
   pip: name=pip state=latest virtualenv=/home/mailman/venv
-  become_user: mailman
-- name: Update pip3
-  pip: name=pip state=latest virtualenv=/home/mailman/venv3
   become_user: mailman
 - name: Install buildout
   pip: name=zc.buildout virtualenv=/home/mailman/venv
@@ -25,9 +17,6 @@
     - python-psycopg2
 - name: Install PostgreSQL libraries
   pip: name=psycopg2 virtualenv=/home/mailman/venv
-  become_user: mailman
-- name: Install PostgreSQL libraries 3
-  pip: name=psycopg2 virtualenv=/home/mailman/venv3
   become_user: mailman
 - name: Install uWSGI
   pip: name=uwsgi virtualenv=/home/mailman/venv

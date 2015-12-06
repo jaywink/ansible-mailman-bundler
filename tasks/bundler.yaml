@@ -1,44 +1,7 @@
 ---
 - name: Bundler from git
-  git: dest=/home/mailman/mailman-bundler clone=yes repo=https://gitlab.com/mailman/mailman-bundler.git force=yes
+  git: dest={{ mailman_bundler_path }} clone=yes repo=https://gitlab.com/mailman/mailman-bundler.git force=yes
   become_user: mailman
-
-## Web
-- name: Create local settings
-  template: dest=/home/mailman/mailman-bundler/mailman_web/settings_local.py src=settings_local.py.j2
-  become_user: mailman
-  notify:
-    - restart mailmanweb
 - name: Create var path
   file: path={{ mailman_var_path }} owner=mailman group=mailman state=directory
   become_user: mailman
-- name: Create static path
-  file: path={{ mailman_var_path }}/mailman-web/static owner=mailman group=mailman state=directory
-  become_user: mailman
-- name: Create search index path
-  file: path={{ mailman_var_path }}/mailman-web/fulltext_index owner=mailman group=mailman state=directory
-  become_user: mailman
-- name: Create logging path
-  file: path=/var/log/mailman-web owner=mailman group=www-data state=directory mode=0770
-- name: Set buildout target
-  replace:
-    dest: /home/mailman/mailman-bundler/buildout.cfg
-    regexp: "deployment = development"
-    replace: "deployment = production"
-- name: Run buildout
-  shell: chdir=/home/mailman/mailman-bundler executable=/bin/bash source /home/mailman/venv/bin/activate && buildout
-  become_user: mailman
-  notify:
-    - restart mailmanweb
-- name: Initialize database
-  shell: chdir=/home/mailman/mailman-bundler executable=/bin/bash source /home/mailman/venv/bin/activate && ./bin/mailman-post-update
-  become_user: mailman
-  notify:
-    - restart mailmanweb
-
-
-## Mailman
-- name: mailman upstart config
-  template: src=mailman-upstart.conf dest=/etc/init/mailman.conf
-  notify:
-    - restart mailman

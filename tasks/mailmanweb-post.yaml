@@ -1,4 +1,9 @@
 ---
+- name: Initialize database
+  shell: chdir={{ mailman_bundler_path }} executable=/bin/bash source /home/mailman/venv/bin/activate && ./bin/mailman-post-update
+  become_user: mailman
+  notify:
+    - restart mailmanweb
 - name: uWSGI ini file
   template: src=mailman-web-uwsgi.ini dest=/home/mailman/mailman-web-uwsgi.ini
   become_user: mailman

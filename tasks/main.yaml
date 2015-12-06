@@ -4,5 +4,9 @@
 - include: python.yaml
 - include: postgresql.yaml
 - include: bundler.yaml
-- include: uwsgi.yaml
+- include: mailman.yaml
+- include: mailmanweb.yaml
+- include: buildout.yaml
+- include: mailman-post.yaml
+- include: mailmanweb-post.yaml
 - include: apache.yaml

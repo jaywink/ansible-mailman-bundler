@@ -1,0 +1,9 @@
+---
+- name: Create settings
+  template: dest="{{ mailman_config_path }}" src=mailman.cfg.j2
+  become_user: mailman
+  notify:
+    - restart mailman
+- name: Install PostgreSQL libraries 3
+  pip: name=psycopg2 virtualenv=/home/mailman/mailman-bundler/venv-3.4
+  become_user: mailman

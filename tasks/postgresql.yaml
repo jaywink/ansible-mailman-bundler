@@ -1,10 +1,19 @@
 ---
-- name: Create database
+- name: Create mailmanweb database
   postgresql_db: name={{ mailman_db_web_name }}
   become_user: postgres
-- name: Create user
+- name: Create mailmanweb user
   postgresql_user: db={{ mailman_db_web_name }} name={{ mailman_db_web_user }} password={{ mailman_db_web_password }} priv=ALL
   become_user: postgres
-- name: Ensure user does not have unnecessary privilege
+- name: Ensure mailmanweb user does not have unnecessary privilege
   postgresql_user: name={{ mailman_db_web_user }} role_attr_flags=NOSUPERUSER,NOCREATEDB
+  become_user: postgres
+- name: Create mailman database
+  postgresql_db: name={{ mailman_db_name }}
+  become_user: postgres
+- name: Create mailman user
+  postgresql_user: db={{ mailman_db_name }} name={{ mailman_db_user }} password={{ mailman_db_password }} priv=ALL
+  become_user: postgres
+- name: Ensure mailman user does not have unnecessary privilege
+  postgresql_user: name={{ mailman_db_user }} role_attr_flags=NOSUPERUSER,NOCREATEDB
   become_user: postgres

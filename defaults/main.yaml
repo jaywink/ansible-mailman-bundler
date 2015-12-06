@@ -3,6 +3,7 @@
 postfix_relayhost: "[smtp.example.com]:587"
 postfix_smtp_sasl_user: "username"
 postfix_smtp_sasl_password: "password"
+postfix_inet_interfaces: "all"
 
 # Send a test mail to this address when Postfix configuration changes
 postfix_send_test_mail_to: "email@example.com"
@@ -11,7 +12,12 @@ postfix_rewrite_sender_address: "info@example.com"
 
 
 ## Mailman
+mailman_bundler_path: "/home/mailman/mailman-bundler"
 mailman_web_secret_key: "set me please"
+mailman_db_name: "mailman"
+mailman_db_user: "mailman"
+mailman_db_password: "password"
+mailman_db_host: "127.0.0.1"
 mailman_db_web_name: "mailmanweb"
 mailman_db_web_user: "mailmanweb"
 mailman_db_web_password: "password"
@@ -21,6 +27,9 @@ mailman_admin_email: "admin@example.com"
 mailman_host: "example.com"
 mailman_confirmation_from_email: "listmaster@example.com"
 mailman_timezone: "Europe/Helsinki"
-mailman_var_path: "/home/mailman/mailman-bundler/mailman_web/var"
+mailman_var_path: "{{ mailman_bundler_path }}/mailman_web/var"
 mailman_app_name: "A very cool mailing list"
 mailman_web_root: "{{ mailman_var_path }}/mailman-web/static"
+mailman_config_path: "{{ mailman_bundler_path }}/deployment/mailman.cfg"
+mailman_rest_password: "password"
+mailman_web_allow_internal_auth: "True"
