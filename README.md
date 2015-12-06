@@ -1,4 +1,4 @@
-[![Galaxy](http://img.shields.io/badge/galaxy-jaywink.mailman-bundler-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/6385)
+[![Galaxy](https://img.shields.io/ansible/role/6385.svg)](https://galaxy.ansible.com/list#/roles/6385)
 
 ## Mailman-Bundler role for Ansible
 
