@@ -6,6 +6,9 @@
 - name: Update pip
   pip: name=pip state=latest virtualenv=/home/mailman/venv
   become_user: mailman
+- name: Update setuptools
+  pip: name=setuptools state=latest virtualenv=/home/mailman/venv
+  become_user: mailman
 - name: Install buildout
   pip: name=zc.buildout virtualenv=/home/mailman/venv
   become_user: mailman
