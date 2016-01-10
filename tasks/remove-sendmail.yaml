@@ -1,0 +1,3 @@
+---
+- name: Ensure sendmail isn't installed
+  apt: name=sendmail state=absent

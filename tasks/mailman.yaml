@@ -2,6 +2,5 @@
 - name: mailman upstart config
   template: src=mailman-upstart.conf dest=/etc/init/mailman.conf
   notify:
-    - stop sendmail
     - restart postfix
     - restart mailman

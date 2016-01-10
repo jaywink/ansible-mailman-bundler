@@ -1,5 +1,6 @@
 ---
 - include: user.yaml
+- include: remove-sendmail.yaml
 - include: dependencies.yaml
 - include: python.yaml
 - include: postgresql.yaml

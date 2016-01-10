@@ -1,7 +1,4 @@
 ---
-- name: stop sendmail
-  service: name=sendmail state=stopped
-  ignore_errors: yes
 - name: restart postfix
   service: name=postfix state=restarted
 - name: restart mailman
