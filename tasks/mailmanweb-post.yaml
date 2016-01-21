@@ -13,3 +13,7 @@
   template: src=mailman-web-upstart.conf dest=/etc/init/mailmanweb.conf
   notify:
     - restart mailmanweb
+- name: Copy over wsgi app module
+  command: /bin/cp {{ mailman_bundler_path }}/bin/mailman-web.wsgi {{ mailman_bundler_path }}/mailman_web/wsgi.py
+  notify:
+    - restart mailmanweb
