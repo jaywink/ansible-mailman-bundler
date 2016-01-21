@@ -1,6 +1,8 @@
 ---
-- name: mailman upstart config
-  template: src=mailman-upstart.conf dest=/etc/init/mailman.conf
+- name: Mailman init script
+  template: src=mailman.j2 dest=/etc/init.d/mailman mode=0755
   notify:
     - restart postfix
     - restart mailman
+- name: Make mailman init on startup
+  command: /usr/sbin/update-rc.d mailman defaults
