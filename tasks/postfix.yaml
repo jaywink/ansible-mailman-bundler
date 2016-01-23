@@ -1,5 +1,9 @@
 ---
+- name: Get mailman rules status in postfix rules
+  shell: /bin/grep mailman /etc/postfix/main.cf | wc -l
+  register: mailman_rules_in_postfix
 - name: Add postfix rules
   shell: /bin/cat {{ mailman_bundler_path }}/deployment/postfix-main.cf >> /etc/postfix/main.cf
+  when: mailman_rules_in_postfix.stdout == 0
   notify:
     - restart postfix
