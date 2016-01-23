@@ -1,0 +1,5 @@
+---
+- name: Add postfix rules
+  shell: /bin/cat {{ mailman_bundler_path }}/deployment/postfix-main.cf >> /etc/postfix/main.cf
+  notify:
+    - restart postfix

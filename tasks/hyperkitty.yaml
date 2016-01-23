@@ -1,0 +1,15 @@
+---
+- name: Set hyperkitty url
+  lineinfile:
+    dest: "{{ mailman_bundler_path }}/deployment/mailman-hyperkitty.cfg"
+    backup: yes
+    regexp: "^base_url"
+    state: present
+    line: "base_url: http://{{ mailman_host }}/archives"
+- name: Set hyperkitty key
+  lineinfile:
+    dest: "{{ mailman_bundler_path }}/deployment/mailman-hyperkitty.cfg"
+    backup: yes
+    regexp: "^api_key"
+    state: present
+    line: "api_key: {{ mailman_archiver_key }}"

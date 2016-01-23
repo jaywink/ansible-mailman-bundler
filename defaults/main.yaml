@@ -8,8 +8,6 @@ postfix_inet_interfaces: "all"
 # Send a test mail to this address when Postfix configuration changes
 postfix_send_test_mail_to: "email@example.com"
 postfix_hostname: "example.com"
-postfix_rewrite_sender_address: "info@example.com"
-
 
 ## Mailman
 mailman_bundler_path: "/home/mailman/mailman-bundler"
@@ -33,3 +31,4 @@ mailman_web_root: "{{ mailman_var_path }}/mailman-web/static"
 mailman_config_path: "{{ mailman_bundler_path }}/deployment/mailman.cfg"
 mailman_rest_password: "password"
 mailman_web_allow_internal_auth: "True"
+mailman_archiver_key: "set me please"

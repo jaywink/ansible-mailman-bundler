@@ -48,3 +48,7 @@ USE_SSL = False
 
 USE_INTERNAL_AUTH = {{ mailman_web_allow_internal_auth }}
 MAILMAN_REST_API_PASS = '{{ mailman_rest_password }}'
+MAILMAN_ARCHIVER_KEY = '{{ mailman_archiver_key }}'
+MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1', '::ffff:127.0.0.1', '{{ ansible_default_ipv4.address }}')
+
+EMAIL_CONFIRMATION_FROM = 'postmaster@{{ mailman_host }}'

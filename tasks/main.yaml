@@ -10,4 +10,6 @@
 - include: buildout.yaml
 - include: mailman-post.yaml
 - include: mailmanweb-post.yaml
+- include: hyperkitty.yaml
+- include: postfix.yaml
 - include: apache.yaml
