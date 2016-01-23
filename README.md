@@ -25,7 +25,7 @@ Tested only on Ubuntu 14.04. Probably works with anything that has similar packa
 
 #### Ansible
 
-Created and tested with 1.9.4.
+Tested with 1.9.4 and 2.0.
 
 #### Ansible roles
 
@@ -35,14 +35,15 @@ Created and tested with 1.9.4.
 
 See `defaults/main.yml` for possible options. Most of these are required in some way, at least for production usage.
 
+**Make sure to change the default passwords!**
+
 ### Manual steps not covered by role
 
 To create an admin user for mailman-web:
 
     sudo su - mailman
-    source venv/bin/activate
     cd mailman-bundler
-    ./bin/mailman-web-django-admin createsuperuser
+    /bin/django-admin createsuperuser
 
 ### License
 

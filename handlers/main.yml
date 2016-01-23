@@ -1,4 +1,11 @@
 ---
-- include: apache.yml
-- include: mailmanweb.yaml
-- include: mailman.yaml
+## Due to Ansible 2.0 bug, put all handlers here not in includes.
+## See: https://github.com/ansible/ansible/issues/13918
+- name: restart apache
+  service: name=apache2 state=restarted
+- name: restart postfix
+  service: name=postfix state=restarted
+- name: restart mailman
+  service: name=mailman state=restarted
+- name: restart mailmanweb
+  service: name=mailmanweb state=restarted
