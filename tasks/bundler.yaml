@@ -1,6 +1,6 @@
 ---
 - name: Bundler from git
-  git: dest={{ mailman_bundler_path }} clone=yes repo=https://gitlab.com/mailman/mailman-bundler.git force=yes
+  git: dest={{ mailman_bundler_path }} clone=yes repo=https://gitlab.com/jaywink/mailman-bundler.git version=ansible-mailman-bundler force=yes
   become_user: mailman
 - name: Create var path
   file: path={{ mailman_var_path }} owner=mailman group=mailman state=directory
