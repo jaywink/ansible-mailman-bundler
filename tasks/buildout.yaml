@@ -4,6 +4,21 @@
     dest: "{{ mailman_bundler_path }}/buildout.cfg"
     regexp: "deployment = development"
     replace: "deployment = production"
+
+# User our own mailman in buildout
+# This is done because of mailman bug https://gitlab.com/mailman/mailman/issues/112
+- name: Remove mailman from buildout pip
+  replace:
+    dest: "{{ mailman_bundler_path }}/buildout.cfg"
+    regexp: "pip install --pre mailman mailman-hyperkitty"
+    replace: "pip install --pre mailman-hyperkitty"
+- name: Install our own mailman
+  lineinfile:
+    dest: "{{ mailman_bundler_path }}/buildout.cfg"
+    insertbefore: "pip install --pre mailman-hyperkitty"
+    line: "    ${mailman:venv-dir}/bin/pip install git+https://gitlab.com/jaywink/mailman.git@patch-script_url#egg=mailman"
+    state: present
+
 - name: Run buildout
   shell: chdir={{ mailman_bundler_path }} executable=/bin/bash source /home/mailman/venv/bin/activate && buildout
   become_user: mailman
