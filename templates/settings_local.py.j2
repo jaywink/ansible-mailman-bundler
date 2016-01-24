@@ -10,7 +10,7 @@ ADMINS = (
 
 ALLOWED_HOSTS = ["{{ mailman_host }}"]
 
-BROWSERID_AUDIENCES = [ "http://{{ mailman_host }}", "http://{{ mailman_host }}:8000" ]
+BROWSERID_AUDIENCES = [ "https://{{ mailman_host }}", "https://{{ mailman_host }}:8000" ]
 
 EMAIL_CONFIRMATION_FROM = '{{ mailman_confirmation_from_email }}'
 

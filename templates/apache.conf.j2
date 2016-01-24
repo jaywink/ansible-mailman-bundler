@@ -1,12 +1,10 @@
-{#<VirtualHost *:80>#}
-{#    ServerName {{ hostname }}#}
-{#    ServerAlias www.{{ hostname }}#}
-{#    RedirectPermanent / https://{{ hostname }}/#}
-{#</VirtualHost>#}
-
 <VirtualHost *:80>
     ServerName {{ mailman_host }}
-    ServerAlias www.{{ mailman_host }}
+    RedirectPermanent / https://{{ mailman_host }}/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName {{ mailman_host }}
 
     ServerAdmin webmaster@{{ mailman_host }}
 
@@ -15,24 +13,17 @@
     Alias /robots.txt {{ mailman_web_root }}/robots.txt
     Alias /favicon.ico {{ mailman_web_root }}/favicon.ico
     Alias /static {{ mailman_web_root }}
-{#    Alias /media {{ media_root }}#}
 
     <Directory {{ mailman_web_root }}>
         Require all granted
         Options -MultiViews -Indexes
     </Directory>
 
-{#    <Directory {{ media_root }}>#}
-{#        Require all granted#}
-{#        Options -MultiViews -Indexes#}
-{#    </Directory>#}
-
     ProxyPass /static !
-{#    ProxyPass /media !#}
     ProxyPass / uwsgi://127.0.0.1:3080/
 
-{#    SSLEngine on#}
-{#    SSLCertificateFile /etc/ssl/certs/{{ hostname }}.crt#}
-{#    SSLCertificateKeyFile /etc/ssl/private/{{ hostname }}.key#}
-{#    SSLCertificateChainFile /etc/ssl/certs/{{ hostname }}.chain.pem#}
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/{{ mailman_host }}/cert.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/{{ mailman_host }}/privkey.pem
+    SSLCertificateChainFile /etc/letsencrypt/live/{{ mailman_host }}/chain.pem
 </VirtualHost>

@@ -5,7 +5,7 @@
     backup: yes
     regexp: "^base_url"
     state: present
-    line: "base_url: http://{{ mailman_host }}/archives"
+    line: "base_url: https://{{ mailman_host }}/archives"
 - name: Set hyperkitty key
   lineinfile:
     dest: "{{ mailman_bundler_path }}/deployment/mailman-hyperkitty.cfg"
